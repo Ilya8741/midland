@@ -128,13 +128,11 @@
 
 			</div>
 
-			<!-- Mobile offcanvas -->
 			<div class="mobile-menu" data-mobile-menu aria-hidden="true">
 				<div class="mobile-menu__overlay" data-mobile-overlay></div>
 
 				<div class="mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Mobile menu">
 
-					<!-- Level 1 -->
 					<div class="mobile-menu__level is-active" data-level="1">
 						<ul class="mobile-menu__list">
 							<?php if (have_rows('header_menu', $acf_ctx)) : ?>
@@ -181,7 +179,6 @@
 						</div>
 					</div>
 
-					<!-- Level 2 panels (one per item that has submenu) -->
 					<?php if (have_rows('header_menu', $acf_ctx)) : ?>
 						<?php $i = 0; ?>
 						<?php while (have_rows('header_menu', $acf_ctx)) : the_row();
@@ -251,7 +248,6 @@
 						document.body.style.left = '0';
 						document.body.style.right = '0';
 						document.body.style.width = '100%';
-						document.body.style.paddingRight = scrollbarW ? `${scrollbarW}px` : '';
 					} else {
 						const top = document.body.style.top;
 						document.body.style.position = '';
@@ -259,7 +255,6 @@
 						document.body.style.left = '';
 						document.body.style.right = '';
 						document.body.style.width = '';
-						document.body.style.paddingRight = '';
 
 						const restoreY = top ? Math.abs(parseInt(top, 10)) : scrollY;
 						window.scrollTo(0, restoreY);

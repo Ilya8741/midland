@@ -61,10 +61,10 @@ $addr  = $normalize_link($address);
 ?>
 
 <footer class="ms-footer" data-ms-footer>
-	<section class="ms-footer__contact">
+	<section class="ms-footer__contact main-section">
 		<div class="ms-footer__contact-inner">
 			<div class="ms-footer__contact-grid">
-				<div class="ms-footer__contact-left">
+				<div class="ms-footer__contact-left" data-aos="fade-right">
 					<div class="ms-footer__contact-left-main">
 						<?php if (!empty($contact_title)) : ?>
 							<h2 class="ms-footer__contact-title"><?php echo esc_html($contact_title); ?></h2>
@@ -113,7 +113,7 @@ $addr  = $normalize_link($address);
 					</div>
 				</div>
 
-				<div class="ms-footer__contact-right">
+				<div class="ms-footer__contact-right" data-aos="fade-left">
 					<?php
 					if (!empty($footer_contact_form)) {
 						echo do_shortcode(apply_filters('the_content', $footer_contact_form));
@@ -124,11 +124,10 @@ $addr  = $normalize_link($address);
 		</div>
 	</section>
 
-	<section class="ms-footer__bottom">
+	<section class="ms-footer__bottom main-section">
 		<div class="ms-footer__bottom-inner">
 			<div class="ms-footer__bottom-grid">
-
-				<div class="ms-footer__col">
+				<div class="ms-footer__col" data-aos="fade-right">
 					<h3 class="ms-footer__col-title">Contact us</h3>
 
 					<ul class="ms-footer__list">
@@ -175,7 +174,7 @@ $addr  = $normalize_link($address);
 						<?php endif; ?>
 					</ul>
 				</div>
-				<div class="ms-footer__col-right">
+				<div class="ms-footer__col-right" data-aos="fade-left">
 					<div class=" ms-footer__col--accordion">
 						<details class="ms-footer__details" data-footer-details>
 							<summary class="ms-footer__summary">
@@ -263,99 +262,107 @@ $addr  = $normalize_link($address);
 <?php wp_footer(); ?>
 
 <script>
-	document.addEventListener('DOMContentLoaded', () => {
-		const root = document.querySelector('[data-ms-footer]');
-		if (!root) return;
+document.addEventListener('DOMContentLoaded', () => {
+  const root = document.querySelector('[data-ms-footer]');
+  if (!root) return;
 
-		const detailsList = Array.from(root.querySelectorAll('[data-footer-details]'));
-		if (!detailsList.length) return;
+  const items = [...root.querySelectorAll('[data-footer-details]')];
+  if (!items.length) return;
 
-		const mq = window.matchMedia('(min-width: 992px)');
+  const mq = window.matchMedia('(min-width: 992px)');
 
-		const setMaxHeight = (detailsEl) => {
-			const body = detailsEl.querySelector('.ms-footer__details-body');
-			if (!body) return;
+  const getBody = (item) => item.querySelector('.ms-footer__details-body');
+  const getSummary = (item) => item.querySelector('summary');
 
-			if (detailsEl.open) {
-				body.style.maxHeight = body.scrollHeight + 'px';
-			} else {
-				body.style.maxHeight = '0px';
-			}
-		};
+  const closeItem = (item) => {
+    const body = getBody(item);
+    if (!body) return;
 
-		const closeOthers = (current) => {
-			detailsList.forEach(d => {
-				if (d !== current && d.open) {
-					d.open = false;
-					setMaxHeight(d);
-				}
-			});
-		};
+    body.style.maxHeight = body.scrollHeight + 'px';
+    requestAnimationFrame(() => {
+      body.style.maxHeight = '0px';
+    });
 
-		const enableAnimatedMobile = () => {
-			detailsList.forEach(d => {
-				const body = d.querySelector('.ms-footer__details-body');
-				const summary = d.querySelector('summary');
-				if (!body || !summary) return;
+    const onEnd = (e) => {
+      if (e.propertyName !== 'max-height') return;
+      item.open = false;
+      item.removeEventListener('transitionend', onEnd);
+    };
 
-				setMaxHeight(d);
+    item.addEventListener('transitionend', onEnd);
+  };
 
-				summary.addEventListener('click', (e) => {
-					if (mq.matches) return;
+  const openItem = (item) => {
+    const body = getBody(item);
+    if (!body) return;
 
-					e.preventDefault();
+    item.open = true;
+    body.style.maxHeight = '0px';
 
-					const willOpen = !d.open;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        body.style.maxHeight = body.scrollHeight + 'px';
+      });
+    });
+  };
 
-					if (willOpen) {
-						d.open = true;
-						closeOthers(d);
-						requestAnimationFrame(() => setMaxHeight(d));
-					} else {
-						setMaxHeight(d);
-						const onEnd = (evt) => {
-							if (evt.propertyName !== 'max-height') return;
-							d.removeEventListener('transitionend', onEnd);
-							d.open = false;
-						};
-						d.addEventListener('transitionend', onEnd);
-						requestAnimationFrame(() => {
-							d.open = true;
-							body.style.maxHeight = '0px';
-						});
-					}
-				}, {
-					passive: false
-				});
-			});
-		};
+  const closeOthers = (current) => {
+    items.forEach((item) => {
+      if (item !== current && item.open) closeItem(item);
+    });
+  };
 
-		const syncDesktop = () => {
-			if (mq.matches) {
-				detailsList.forEach(d => {
-					d.open = true;
-					const body = d.querySelector('.ms-footer__details-body');
-					if (body) body.style.maxHeight = 'none';
-				});
-			} else {
-				detailsList.forEach(d => {
-					const body = d.querySelector('.ms-footer__details-body');
-					if (body) body.style.maxHeight = '0px';
-					d.open = false;
-				});
-			}
-		};
+  const toggleItem = (item) => {
+    if (item.open) {
+      closeItem(item);
+    } else {
+      closeOthers(item);
+      openItem(item);
+    }
+  };
 
-		enableAnimatedMobile();
-		syncDesktop();
+  const syncState = () => {
+    items.forEach((item) => {
+      const body = getBody(item);
+      if (!body) return;
 
-		mq.addEventListener ? mq.addEventListener('change', syncDesktop) : mq.addListener(syncDesktop);
+      if (mq.matches) {
+        item.open = true;
+        body.style.maxHeight = 'none';
+      } else {
+        item.open = false;
+        body.style.maxHeight = '0px';
+      }
+    });
+  };
 
-		window.addEventListener('resize', () => {
-			if (mq.matches) return;
-			detailsList.forEach(setMaxHeight);
-		});
-	});
+  items.forEach((item) => {
+    const summary = getSummary(item);
+    if (!summary) return;
+
+    summary.addEventListener('click', (e) => {
+      if (mq.matches) return;
+      e.preventDefault();
+      toggleItem(item);
+    });
+  });
+
+  mq.addEventListener
+    ? mq.addEventListener('change', syncState)
+    : mq.addListener(syncState);
+
+  window.addEventListener('resize', () => {
+    if (mq.matches) return;
+
+    items.forEach((item) => {
+      if (!item.open) return;
+      const body = getBody(item);
+      if (body) body.style.maxHeight = body.scrollHeight + 'px';
+    });
+  });
+
+  syncState();
+});
 </script>
 </body>
 
