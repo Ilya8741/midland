@@ -170,6 +170,9 @@ $uid = 'reviews-section-' . get_row_index();
                  1200: {
                     slidesPerView: 3.8
                 },
+                 1441: {
+                    slidesPerView: 4
+                },
             },
             on: {
                 init() {

@@ -8,7 +8,7 @@
  */
 
 if ( ! defined( '_S_VERSION' ) ) {
-	define( '_S_VERSION', '1.1.4' );
+	define( '_S_VERSION', '1.1.8' );
 }
 
 /**
@@ -223,6 +223,19 @@ function midland_stairlifts_scripts() {
 				});
 			}
 		});"
+	);
+
+		// Main JS
+	$main_js_rel  = '/assets/js/main.js';
+	$main_js_path = get_template_directory() . $main_js_rel;
+	$main_js_uri  = get_template_directory_uri() . $main_js_rel;
+
+	wp_enqueue_script(
+		'midland-stairlifts-main',
+		$main_js_uri,
+		array( 'swiper-js', 'aos-js' ),
+		file_exists( $main_js_path ) ? filemtime( $main_js_path ) : _S_VERSION,
+		true
 	);
 
 	// Comments

@@ -25,7 +25,6 @@ if (empty($posts)) {
                 <div class="related-articles-title main-title" data-aos="fade-right"><?php echo wp_kses_post($title); ?></div>
             <?php endif; ?>
 
-
             <?php if (!empty($link) && !empty($link['url'])) :
                 $btn_url    = $link['url'];
                 $btn_title  = !empty($link['title']) ? $link['title'] : 'Learn more';

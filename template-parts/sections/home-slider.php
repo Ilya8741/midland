@@ -188,7 +188,7 @@ $uid = 'home-slider-' . get_row_index();
     const progressEl = document.querySelector('[data-home-slider-progress="' + uid + '"]');
 
     const swiper = new Swiper(root, {
-      slidesPerView: 1.2,
+      slidesPerView: 1.1,
       spaceBetween: 24,
       speed: 450,
       watchOverflow: true,
@@ -202,6 +202,9 @@ $uid = 'home-slider-' . get_row_index();
         },
         1024: {
           slidesPerView: 3.7
+        },
+        1441: {
+          slidesPerView: 4
         },
       },
       on: {

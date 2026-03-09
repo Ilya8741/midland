@@ -113,10 +113,11 @@
 
 					<!-- Burger (mobile) -->
 					<button class="main-header__burger" type="button" aria-label="Open menu" data-burger>
-						<svg xmlns="http://www.w3.org/2000/svg" class="icon-burger" width="24" height="24" viewBox="0 0 24 24" fill="none">
-							<path d="M4 5H20" stroke="#020251" stroke-linejoin="round" />
-							<path d="M4 12H20" stroke="#020251" stroke-linejoin="round" />
-							<path d="M4 19H20" stroke="#020251" stroke-linejoin="round" />
+
+						<svg xmlns="http://www.w3.org/2000/svg" class="icon-burger" width="63" height="30" viewBox="0 0 63 30" fill="none">
+							<path d="M10.5 6.25H52.5" stroke="#17172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+							<path d="M10.5 15H52.5" stroke="#17172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+							<path d="M10.5 23.75H52.5" stroke="#17172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
 						</svg>
 
 						<svg xmlns="http://www.w3.org/2000/svg" class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none">
