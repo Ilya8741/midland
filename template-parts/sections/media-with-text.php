@@ -1,12 +1,13 @@
 <?php
 $subtitle      = get_sub_field('subtitle');
-$section_title = get_sub_field('title'); // не затираем $title
+$section_title = get_sub_field('title');
 $text1         = get_sub_field('text1');
 $text2         = get_sub_field('text2');
-$image         = get_sub_field('image');        // может быть array|id|url
+$image         = get_sub_field('image');
 $video_version = get_sub_field('video_version');
+$small_image   = get_sub_field('small_image');
 $link          = get_sub_field('link');
-$video         = get_sub_field('video');        // может быть array|id|url
+$video         = get_sub_field('video');
 
 $image_id = null;
 if (is_array($image) && !empty($image['id'])) {
@@ -16,7 +17,6 @@ if (is_array($image) && !empty($image['id'])) {
 } elseif (is_string($image) && $image) {
 }
 
-// ---- нормализуем video до $video_url и $video_mime
 $video_url  = null;
 $video_mime = null;
 
@@ -32,7 +32,7 @@ if (is_array($video)) {
 ?>
 
 <div class="media-with-text main-section">
-  <div class="media-with-text-wrapper<?php echo $video_version ? ' media-with-text-wrapper--video' : ''; ?>">
+  <div class="media-with-text-wrapper<?php echo $small_image ? ' media-with-text-wrapper--small' : ''; ?><?php echo $video_version ? ' media-with-text-wrapper--video' : ''; ?>">
     <div class="media-with-text-left" data-aos="fade-right">
       <?php if (!empty($subtitle)) : ?>
         <h5 class="media-with-text-subtitle"><?php echo esc_html($subtitle); ?></h5>
