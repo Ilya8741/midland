@@ -1600,6 +1600,10 @@ span[data-name="your-message"] {
   background: transparent;
 }
 
+.tab-section__tab:hover {
+  opacity: 1 !important; 
+}
+
 .tab-section__tablist .tab-section__tab:first-child {
   padding-top: 0;
 }

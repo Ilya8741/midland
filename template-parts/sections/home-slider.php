@@ -29,13 +29,14 @@ $uid = 'home-slider-' . get_row_index();
         $btn_target = !empty($link['target']) ? $link['target'] : '_self';
         $btn_rel    = ($btn_target === '_blank') ? 'noopener noreferrer' : '';
       ?>
-        <a href="<?php echo esc_url($btn_url); ?>"
+      <div data-aos="fade-left">
+          <a href="<?php echo esc_url($btn_url); ?>"
           class="home-slider-button main-button"
-          data-aos="fade-left"
           target="<?php echo esc_attr($btn_target); ?>"
           <?php if ($btn_rel) : ?>rel="<?php echo esc_attr($btn_rel); ?>" <?php endif; ?>>
           <?php echo esc_html($btn_title); ?>
         </a>
+      </div>
       <?php endif; ?>
     </div>
 

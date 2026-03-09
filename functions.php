@@ -8,7 +8,7 @@
  */
 
 if ( ! defined( '_S_VERSION' ) ) {
-	define( '_S_VERSION', '1.1.3' );
+	define( '_S_VERSION', '1.1.4' );
 }
 
 /**
