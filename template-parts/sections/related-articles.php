@@ -164,7 +164,7 @@ if (empty($posts)) {
         const controlsEl = document.querySelector('[data-related-articles-controls="' + uid + '"]');
 
         const swiper = new Swiper(root, {
-            slidesPerView: 1.2,
+            slidesPerView: 1.1,
             spaceBetween: 24,
             speed: 450,
             watchOverflow: true,
