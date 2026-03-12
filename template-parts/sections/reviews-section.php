@@ -2,11 +2,22 @@
 // Layout fields
 $title = get_sub_field('title');
 $text  = get_sub_field('text');
+$spacing = get_sub_field('spacing');
 
 $uid = 'reviews-section-' . get_row_index();
+
+$section_classes = 'reviews-section';
+
+if ($spacing === 'Top spacing') {
+    $section_classes .= ' spacing-top';
+} elseif ($spacing === 'Bottom spacing ') {
+    $section_classes .= ' spacing-bottom';
+}  elseif ($spacing === 'All spacing ') {
+    $section_classes .= ' spacing-all';
+}
 ?>
 
-<div class="reviews-section reviews-section--<?php echo esc_attr($uid); ?> main-section">
+<section class="<?php echo esc_attr($section_classes); ?> reviews-section--<?php echo esc_attr($uid); ?> main-section">
     <div class="reviews-section__wrapper">
 
         <div class="reviews-section-header" data-aos="fade-up">
@@ -137,7 +148,7 @@ $uid = 'reviews-section-' . get_row_index();
 
         </div>
     </div>
-</div>
+</section>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {

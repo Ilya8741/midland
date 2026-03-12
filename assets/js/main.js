@@ -1,4 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
+   	document.querySelectorAll('.detailed-hero__accordion-button').forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const item = btn.closest('.detailed-hero__accordion-item');
+				const isOpen = item.classList.contains('is-open');
+
+				item.classList.toggle('is-open', !isOpen);
+				btn.setAttribute('aria-expanded', (!isOpen).toString());
+			});
+		});
+
+    document.querySelectorAll('.faq-section__accordion-button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-section__accordion-item');
+        const isOpen = item.classList.contains('is-open');
+
+        item.classList.toggle('is-open', !isOpen);
+        btn.setAttribute('aria-expanded', (!isOpen).toString());
+      });
+    });
+
   const blocks = document.querySelectorAll('.video-block');
   if (!blocks.length) return;
 

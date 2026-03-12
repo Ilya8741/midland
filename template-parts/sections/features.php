@@ -1,18 +1,19 @@
-<div class="features features--<?php echo esc_attr($uid); ?> main-section">
-  <div class="features-wrapper">
+<?php
+$big_spacing_mobile = get_sub_field('big_spacing_mobile');
+?>
 
+<section class="features  <?php if ($big_spacing_mobile): ?> features--small<?php endif; ?> main-section">
+  <div class="features-wrapper">
     <?php if (have_rows('features_items')) : ?>
-      
       <?php 
       $i = 0;
-      $base_duration = 400; // начальная скорость
+      $base_duration = 400;
       ?>
 
       <?php while (have_rows('features_items')) : the_row();
         $image = get_sub_field('image');
         $title = get_sub_field('title');
         $text  = get_sub_field('text');
-
         $duration = $base_duration + ($i * 100);
       ?>
 
@@ -57,4 +58,4 @@
     <?php endif; ?>
 
   </div>
-</div>
+</section>

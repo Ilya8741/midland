@@ -17,7 +17,7 @@ if (empty($posts)) {
 }
 ?>
 
-<div class="related-articles related-articles--<?php echo esc_attr($uid); ?> main-section">
+<section class="related-articles related-articles--<?php echo esc_attr($uid); ?> main-section">
     <div class="related-articles__wrapper">
 
         <div class="home-slider-header">
@@ -150,7 +150,7 @@ if (empty($posts)) {
   </div>
 </div>
     </div>
-</div>
+</section>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const uid = <?php echo wp_json_encode($uid); ?>;

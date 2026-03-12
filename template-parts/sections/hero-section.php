@@ -1,17 +1,17 @@
 <?php
-$subtitle     = get_sub_field('hero_subtitle');
-$title        = get_sub_field('hero_title');
-$text         = get_sub_field('hero_text');
-$image        = get_sub_field('hero_image');
-$block_image  = get_sub_field('hero_block_image');
-$tag          = get_sub_field('hero_block_tag');
-$block_text   = get_sub_field('hero_block_text');
-$link         = get_sub_field('link'); // ACF Link field
+  $subtitle     = get_sub_field('hero_subtitle');
+  $title        = get_sub_field('hero_title');
+  $text         = get_sub_field('hero_text');
+  $image        = get_sub_field('hero_image');
+  $block_image  = get_sub_field('hero_block_image');
+  $tag          = get_sub_field('hero_block_tag');
+  $block_text   = get_sub_field('hero_block_text');
+  $link         = get_sub_field('link');
+  $listing      = get_sub_field('listing_version');
 ?>
 
-<div class="hero-section main-section">
+<section class="hero-section main-section <?php if ($listing): ?> listing-section<?php endif; ?>">
   <div class="hero-section-wrapper">
-
     <div class="hero-section-header">
       <div class="hero-section-left" data-aos="fade-right">
         <?php if (!empty($subtitle)) : ?>
@@ -21,9 +21,9 @@ $link         = get_sub_field('link'); // ACF Link field
         <?php endif; ?>
 
         <?php if (!empty($title)) : ?>
-          <h1 class="hero-section-title">
-            <?php echo esc_html($title); ?>
-          </h1>
+          <div class="hero-section-title">
+            <?php echo wp_kses_post($title); ?>
+          </div>
         <?php endif; ?>
       </div>
 
@@ -86,8 +86,6 @@ $link         = get_sub_field('link'); // ACF Link field
           <?php endif; ?>
         </div>
       </div>
-
     </div>
-
   </div>
-</div>
+</section>

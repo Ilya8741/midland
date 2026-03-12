@@ -1,4 +1,4 @@
-<div class="about-info">
+<section class="about-info">
     <div class="about-info-wrapper">
         <?php if (have_rows('items')) :
             $i = 0;
@@ -31,4 +31,4 @@
             <?php endwhile; ?>
         <?php endif; ?>
     </div>
-</div>
+</section>

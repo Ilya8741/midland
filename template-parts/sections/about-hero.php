@@ -17,7 +17,7 @@ if (is_array($video)) {
 }
 ?>
 
-<div class="about-hero">
+<section class="about-hero">
     <div class="about-hero-wrapper main-container">
         <div class="about-hero-header">
             <div class="about-hero-header-left" data-aos="fade-right">
@@ -27,7 +27,7 @@ if (is_array($video)) {
                     </h5>
                 <?php endif; ?>
                 <?php if (!empty($title)) : ?>
-                    <div class="about-hero-title main-title">
+                    <div class="about-hero-title main-title-h1">
                         <?php echo wp_kses_post($title); ?>
                     </div>
                 <?php endif; ?>
@@ -76,4 +76,4 @@ if (is_array($video)) {
             </div>
         </div>
     </div>
-</div>
+</section>

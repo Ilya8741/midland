@@ -8,6 +8,8 @@ $video_version = get_sub_field('video_version');
 $small_image   = get_sub_field('small_image');
 $link          = get_sub_field('link');
 $video         = get_sub_field('video');
+$small_title         = get_sub_field('small_title');
+
 
 $image_id = null;
 if (is_array($image) && !empty($image['id'])) {
@@ -31,7 +33,7 @@ if (is_array($video)) {
 }
 ?>
 
-<div class="media-with-text main-section">
+<section class="media-with-text main-section">
   <div class="media-with-text-wrapper<?php echo $small_image ? ' media-with-text-wrapper--small' : ''; ?><?php echo $video_version ? ' media-with-text-wrapper--video' : ''; ?>">
     <div class="media-with-text-left" data-aos="fade-right">
       <?php if (!empty($subtitle)) : ?>
@@ -39,7 +41,7 @@ if (is_array($video)) {
       <?php endif; ?>
 
       <?php if (!empty($section_title)) : ?>
-        <h2 class="media-with-text-title"><?php echo esc_html($section_title); ?></h2>
+        <h2 class="media-with-text-title <?php if ($small_title): ?> media-with-text--small-title<?php endif; ?>"><?php echo esc_html($section_title); ?></h2>
       <?php endif; ?>
 
       <?php if (!empty($text1)) : ?>
@@ -97,4 +99,4 @@ if (is_array($video)) {
       <?php endif; ?>
     </div>
   </div>
-</div>
+</section>

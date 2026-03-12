@@ -7,7 +7,7 @@ $link  = get_sub_field('link'); // ACF Link
 $uid = 'home-slider-' . get_row_index();
 ?>
 
-<div class="home-slider home-slider--<?php echo esc_attr($uid); ?> main-section">
+<section class="home-slider home-slider--<?php echo esc_attr($uid); ?> main-section">
   <div class="home-slider__wrapper">
 
     <div class="home-slider-header">
@@ -174,7 +174,7 @@ $uid = 'home-slider-' . get_row_index();
             </div>
     </div>
   </div>
-</div>
+</section>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
