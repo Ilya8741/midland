@@ -63,32 +63,42 @@
 									$item_id = 'menu-item-' . $uid . '-' . $i;
 									?>
 									<li class="main-nav__item <?php echo $has_sub ? 'has-submenu' : ''; ?>" data-menu-item="<?php echo esc_attr($item_id); ?>">
+
 										<?php if (!empty($link) && !empty($link['url'])) : ?>
 											<?php
-											$link_url    = !empty($link['url']) ? $link['url'] : '';
+											$link_url    = $link['url'];
 											$link_target = !empty($link['target']) ? $link['target'] : '_self';
+											$link_text   = !empty($link['title']) ? trim($link['title']) : 'Link';
 
-											$is_active = false;
+											$is_active   = false;
+											$link_page_id = url_to_postid($link_url);
+											$current_id   = get_queried_object_id();
 
-											$link_page_id = $link_url ? url_to_postid($link_url) : 0;
-
-											if ($link_page_id && is_page($link_page_id)) {
+											if ($link_page_id && $current_id === $link_page_id) {
 												$is_active = true;
 											}
 
 											if (
-												is_page_template('page-templates/product-listing.php') ||
-												is_page_template('page-templates/product-detailed.php')
+												trim($link_text) === 'Stairlift range' &&
+												(
+													is_page_template('page-templates/product-listing.php') ||
+													is_page_template('page-templates/product-detailed.php')
+												)
 											) {
 												$is_active = true;
 											}
 											?>
-											<a class="main-nav__link <?php echo $is_active ? ' active' : ''; ?>"
+
+											<a
+												class="main-nav__link<?php echo $is_active ? ' active' : ''; ?>"
 												href="<?php echo esc_url($link_url); ?>"
 												target="<?php echo esc_attr($link_target); ?>">
-												<?php echo esc_html(!empty($link['title']) ? $link['title'] : 'Link'); ?>
+												<?php echo esc_html($link_text); ?>
 											</a>
-											<?php if ($is_active): ?><div class="main-nav__link-border"></div><?php endif; ?>
+
+											<?php if ($is_active) : ?>
+												<div class="main-nav__link-border"></div>
+											<?php endif; ?>
 										<?php endif; ?>
 
 										<?php if ($has_sub) : ?>
@@ -98,8 +108,11 @@
 														<?php $sub_link = get_sub_field('sub_link'); ?>
 														<?php if (!empty($sub_link) && !empty($sub_link['url'])) : ?>
 															<li class="submenu__item">
-																<a class="submenu__link" href="<?php echo esc_url($sub_link['url']); ?>" target="<?php echo esc_attr($sub_link['target'] ?: '_self'); ?>">
-																	<?php echo esc_html($sub_link['title'] ?: 'Link'); ?>
+																<a
+																	class="submenu__link"
+																	href="<?php echo esc_url($sub_link['url']); ?>"
+																	target="<?php echo esc_attr(!empty($sub_link['target']) ? $sub_link['target'] : '_self'); ?>">
+																	<?php echo esc_html(!empty($sub_link['title']) ? $sub_link['title'] : 'Link'); ?>
 																</a>
 															</li>
 														<?php endif; ?>
@@ -107,6 +120,7 @@
 												</ul>
 											</div>
 										<?php endif; ?>
+
 									</li>
 								<?php endwhile; ?>
 							<?php endif; ?>
