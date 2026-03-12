@@ -3364,14 +3364,14 @@
             {
                 "param": "page_template",
                 "operator": "==",
-                "value": "page-templates\/service-detail.php"
+                "value": "page-templates\/product-detailed.php"
             }
         ],
         [
             {
                 "param": "page_template",
                 "operator": "==",
-                "value": "page-templates\/services-index.php"
+                "value": "page-templates\/product-listing.php"
             }
         ]
     ],
@@ -3384,5 +3384,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1773311469
+    "modified": 1773316304
 }

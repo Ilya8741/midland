@@ -1,14 +1,16 @@
 <?php
 /**
- * Template Name: Services Index
+ * Template Name: Product detailed
  */
 
 get_header();
 ?>
-<main id="primary" class="site-main services-index">
+<main id="primary" class="site-main product-detailed">
   <?php
   if (have_posts()) :
     while (have_posts()) : the_post();
+    ?>
+      <?php
 
       if (have_rows('page_content')) :
         while (have_rows('page_content')) : the_row();

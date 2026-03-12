@@ -58,15 +58,37 @@
 								<?php while (have_rows('header_menu', $acf_ctx)) : the_row();
 									$i++; ?>
 									<?php
-									$link = get_sub_field('link'); // ACF Link
+									$link = get_sub_field('link');
 									$has_sub = have_rows('submenu');
 									$item_id = 'menu-item-' . $uid . '-' . $i;
 									?>
 									<li class="main-nav__item <?php echo $has_sub ? 'has-submenu' : ''; ?>" data-menu-item="<?php echo esc_attr($item_id); ?>">
 										<?php if (!empty($link) && !empty($link['url'])) : ?>
-											<a class="main-nav__link" href="<?php echo esc_url($link['url']); ?>" target="<?php echo esc_attr($link['target'] ?: '_self'); ?>">
-												<?php echo esc_html($link['title'] ?: 'Link'); ?>
+											<?php
+											$link_url    = !empty($link['url']) ? $link['url'] : '';
+											$link_target = !empty($link['target']) ? $link['target'] : '_self';
+
+											$is_active = false;
+
+											$link_page_id = $link_url ? url_to_postid($link_url) : 0;
+
+											if ($link_page_id && is_page($link_page_id)) {
+												$is_active = true;
+											}
+
+											if (
+												is_page_template('page-templates/product-listing.php') ||
+												is_page_template('page-templates/product-detailed.php')
+											) {
+												$is_active = true;
+											}
+											?>
+											<a class="main-nav__link <?php echo $is_active ? ' active' : ''; ?>"
+												href="<?php echo esc_url($link_url); ?>"
+												target="<?php echo esc_attr($link_target); ?>">
+												<?php echo esc_html(!empty($link['title']) ? $link['title'] : 'Link'); ?>
 											</a>
+											<?php if ($is_active): ?><div class="main-nav__link-border"></div><?php endif; ?>
 										<?php endif; ?>
 
 										<?php if ($has_sub) : ?>
