@@ -104,6 +104,9 @@ if ($spacing === 'No spacing top') {
                 1024: {
                     slidesPerView: 3.7
                 },
+                1441: {
+                    slidesPerView: 4
+                },
             },
         });
 

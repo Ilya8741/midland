@@ -2026,6 +2026,10 @@ a:hover {
   background: transparent;
 }
 
+.video-button:hover svg path{
+  stroke: #fff;
+}
+
 .media-with-text__video,
 .media-with-text-image {
   height: 100%;
@@ -2462,7 +2466,7 @@ a:hover {
 .about-hero {
   overflow: hidden;
 }
-.about-hero-main {
+.about-hero-main .video-block {
   position: relative;
   display: flex;
   aspect-ratio: 1392 / 783;
@@ -2520,10 +2524,10 @@ a:hover {
   padding: 114px 24px 0 24px;
 }
 
-.about-hero-video {
+.about-hero-main .about-hero-video {
   height: 100%;
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 @media (max-width: 992px) {
@@ -2562,7 +2566,7 @@ a:hover {
     margin-bottom: 24px;
   }
 
-  .about-hero-main {
+  .about-hero-main .video-block {
     aspect-ratio: 380 / 211;
   }
 
@@ -2666,6 +2670,8 @@ a:hover {
 
 .carousel-section-swiper-wrapper {
   padding-left: 24px;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 .carousel-section-text {
