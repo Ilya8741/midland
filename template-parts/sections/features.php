@@ -2,7 +2,7 @@
 $big_spacing_mobile = get_sub_field('big_spacing_mobile');
 ?>
 
-<section class="features  <?php if ($big_spacing_mobile): ?> features--small<?php endif; ?> main-section">
+<section class="features <?php if ($big_spacing_mobile): ?> features--small<?php endif; ?> main-section">
   <div class="features-wrapper">
     <?php if (have_rows('features_items')) : ?>
       <?php 
