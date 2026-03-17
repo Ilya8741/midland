@@ -1,10 +1,5 @@
-<?php
-$big_spacing_mobile = get_sub_field('big_spacing_mobile');
-$maintenance_version = get_sub_field('maintenance_version');
-$full_spacing = get_sub_field('full_spacing');
-?>
 
-<section class="features <?php if ($full_spacing): ?> features--full<?php endif; ?> <?php if ($maintenance_version): ?> features--maintenance<?php endif; ?> <?php if ($big_spacing_mobile): ?> features--small<?php endif; ?> main-section">
+<section class="features main-section">
   <div class="features-wrapper">
     <?php if (have_rows('features_items')) : ?>
       <?php 

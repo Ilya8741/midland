@@ -9,11 +9,33 @@ $small_image   = get_sub_field('small_image');
 $link          = get_sub_field('link');
 $video         = get_sub_field('video');
 $small_title   = get_sub_field('small_title');
+$tags = get_sub_field('tags');
 $maintenance_version = get_sub_field('maintenance_version');
+$items = get_sub_field('items');
 
 $card_price = get_sub_field('card_price');
 $card_subtitle = get_sub_field('card_subtitle');
 $card_text = get_sub_field('card_text');
+$section_spacing = get_sub_field('section_spacing');
+$background_color = get_sub_field('background_color');
+
+$section_classes = 'media-with-text';
+
+if ($section_spacing === 'Top spacing') {
+    $section_classes .= ' top-spacing';
+} elseif ($section_spacing === 'Bottom spacing') {
+    $section_classes .= ' bottom-spacing';
+} elseif ($section_spacing === 'Standard spacing') {
+    $section_classes .= ' all-spacing';
+} elseif ($section_spacing === 'No spacing') {
+    $section_classes .= ' no-spacing';
+}
+
+if ($background_color === 'Blue') {
+    $section_classes .= ' bg-blue';
+} elseif ($background_color === 'Gray') {
+    $section_classes .= ' bg-gray';
+}
 
 $image_id = null;
 if (is_array($image) && !empty($image['id'])) {
@@ -37,7 +59,7 @@ if (is_array($video)) {
 }
 ?>
 
-<section class="media-with-text main-section <?php if ($maintenance_version): ?> media-with-text--maintenance<?php endif; ?>">
+<section class="<?php echo esc_attr($section_classes); ?> main-section <?= !empty($items) ? 'media-with-text-with-items' : '' ?> <?php if ($maintenance_version): ?> media-with-text--maintenance<?php endif; ?>">
   <div class="media-with-text-wrapper<?php echo $small_image ? ' media-with-text-wrapper--small' : ''; ?><?php echo $video_version ? ' media-with-text-wrapper--video' : ''; ?>">
     <div class="media-with-text-left" data-aos="fade-right">
       <?php if (!empty($subtitle)) : ?>
@@ -48,8 +70,18 @@ if (is_array($video)) {
         <h2 class="media-with-text-title <?php if ($maintenance_version): ?> media-with-text-title--maintenance <?php endif; ?> <?php if ($small_title): ?> media-with-text--small-title<?php endif; ?>"><?php echo esc_html($section_title); ?></h2>
       <?php endif; ?>
 
+            <?php if (!empty($tags)) : ?>
+                <div class="detailed-hero__tags media-with-text-tags" aria-label="Product tags">
+                    <?php foreach ($tags as $tag) : ?>
+                        <?php if (!empty($tag['tag_text'])) : ?>
+                            <span class="detailed-hero__tag media-with-text-tag"><?php echo esc_html($tag['tag_text']); ?></span>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+
       <?php if (!empty($text1)) : ?>
-        <p class="media-with-text-content"><?php echo esc_html($text1); ?></p>
+        <div class="media-with-text-content"><?php echo wp_kses_post($text1); ?></div>
       <?php endif; ?>
 
       <?php if (!empty($text2)) : ?>
@@ -106,7 +138,7 @@ if (is_array($video)) {
       <?php if ($maintenance_version): ?>
         <div class="media-with-text-card-info">
           <?php if (!empty($card_price)) : ?>
-            <div class="media-with-text-card-info-top">
+            <div class="media-with-text-card-info-top <?php if (empty($card_text)) : ?> media-with-text-card-info-top--no-border <?php endif; ?>">
               <h3>
                 <?php echo esc_html($card_price); ?>
               </h3>
@@ -122,4 +154,29 @@ if (is_array($video)) {
       </div>
     <?php endif; ?>
   </div>
+
+<?php if (!empty($items)) : ?>
+    <div class="media-with-text-items">
+        <?php
+        $base_duration = 400;
+        $i = 0;
+        ?>
+
+        <?php foreach ($items as $index => $item) : ?>
+            <?php if (!empty($item['item'])) : ?>
+
+                <?php $duration = $base_duration + ($i * 100); ?>
+
+                <div class="media-with-text-item" data-aos="fade-right"
+                    data-aos-duration="<?php echo esc_attr($duration); ?>">
+                    <span><?php echo $index + 1; ?></span>
+                    <p><?php echo esc_html($item['item']); ?></p>
+                </div>
+
+                <?php $i++; ?>
+
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
 </section>

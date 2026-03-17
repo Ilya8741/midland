@@ -2,36 +2,39 @@
 $title   = get_sub_field('title');
 $text    = get_sub_field('text');
 $link    = get_sub_field('link');
+$maintenance_version = get_sub_field('maintenance_version');
 ?>
 
-<div class="offer-grid main-container">
-    <div class="main-header-section offer-grid-header-section">
-        <div data-aos="fade-right">
-            <?php if (!empty($title)) : ?>
-                <h2 class="offer-grid-title main-title-h3"><?php echo esc_html($title); ?></h2>
-            <?php endif; ?>
+<div class="offer-grid main-container <?php if ($maintenance_version): ?> offer-grid--maintenance<?php endif; ?>">
+    <?php if (!empty($title)) : ?>
+        <div class="main-header-section offer-grid-header-section">
+            <div data-aos="fade-right">
+                <?php if (!empty($title)) : ?>
+                    <h2 class="offer-grid-title main-title-h3"><?php echo esc_html($title); ?></h2>
+                <?php endif; ?>
+            </div>
+            <div data-aos="fade-left">
+                <?php if (!empty($text)) : ?>
+                    <p class="carousel-section-text">
+                        <?php echo wp_kses_post($text); ?>
+                    </p>
+                <?php endif; ?>
+                <?php if (!empty($link) && !empty($link['url'])) :
+                    $btn_url    = $link['url'];
+                    $btn_title  = !empty($link['title']) ? $link['title'] : 'Learn more';
+                    $btn_target = !empty($link['target']) ? $link['target'] : '_self';
+                    $btn_rel    = ($btn_target === '_blank') ? 'noopener noreferrer' : '';
+                ?>
+                    <a href="<?php echo esc_url($btn_url); ?>"
+                        class="offer-grid-button main-button"
+                        target="<?php echo esc_attr($btn_target); ?>"
+                        <?php if ($btn_rel) : ?>rel="<?php echo esc_attr($btn_rel); ?>" <?php endif; ?>>
+                        <?php echo esc_html($btn_title); ?>
+                    </a>
+                <?php endif; ?>
+            </div>
         </div>
-        <div data-aos="fade-left">
-            <?php if (!empty($text)) : ?>
-                <p class="carousel-section-text">
-                    <?php echo wp_kses_post($text); ?>
-                </p>
-            <?php endif; ?>
-            <?php if (!empty($link) && !empty($link['url'])) :
-                $btn_url    = $link['url'];
-                $btn_title  = !empty($link['title']) ? $link['title'] : 'Learn more';
-                $btn_target = !empty($link['target']) ? $link['target'] : '_self';
-                $btn_rel    = ($btn_target === '_blank') ? 'noopener noreferrer' : '';
-            ?>
-                <a href="<?php echo esc_url($btn_url); ?>"
-                    class="offer-grid-button main-button"
-                    target="<?php echo esc_attr($btn_target); ?>"
-                    <?php if ($btn_rel) : ?>rel="<?php echo esc_attr($btn_rel); ?>" <?php endif; ?>>
-                    <?php echo esc_html($btn_title); ?>
-                </a>
-            <?php endif; ?>
-        </div>
-    </div>
+    <?php endif; ?>
     <div class="offer-grid-main">
         <?php if (have_rows('grid_items')) : ?>
             <?php while (have_rows('grid_items')) : the_row();
@@ -45,10 +48,12 @@ $link    = get_sub_field('link');
                 <div class="home-slider-slide offer-grid-item" data-aos="fade-up">
                     <?php if (!empty($slide_image['id'])) : ?>
                         <div class="home-slider-slide-image-wrapper offer-grid-image-wrapper">
-                            <?php if (!empty($slide_tag)) : ?>
-                                <div class="home-slider-slide-tag">
-                                    <?php echo esc_html($slide_tag); ?>
-                                </div>
+                            <?php if (!$maintenance_version): ?> 
+                                <?php if (!empty($slide_tag)) : ?>
+                                    <div class="home-slider-slide-tag">
+                                        <?php echo esc_html($slide_tag); ?>
+                                    </div>
+                                <?php endif; ?>
                             <?php endif; ?>
                             <?php
                             echo wp_get_attachment_image(
@@ -60,11 +65,19 @@ $link    = get_sub_field('link');
                             ?>
                         </div>
                     <?php endif; ?>
+                        <?php if ($maintenance_version): ?> 
+                          <?php if (!empty($slide_tag)) : ?>
+                                <p class="maintenance-tag">
+                                    <?php echo esc_html($slide_tag); ?>
+                                </p>
+                            <?php endif; ?>
+                    <?php endif; ?>
                     <?php if (!empty($slide_title)) : ?>
                         <h5 class="home-slider-slide-title">
-                            <?php echo esc_html($slide_title); ?>
+                            <?php echo wp_kses_post($slide_title); ?>
                         </h5>
                     <?php endif; ?>
+                
                     <?php if (!empty($slide_price)) : ?>
                         <p class="home-slider-slide-price">
                             <?php echo esc_html($slide_price); ?>

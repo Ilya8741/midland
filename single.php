@@ -1,40 +1,19 @@
 <?php
-/**
- * The template for displaying all single posts
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
- *
- * @package midland-stairlifts
- */
-
+/** Single: Insights */
 get_header();
-?>
-
-	<main id="primary" class="site-main">
-
-		<?php
-		while ( have_posts() ) :
-			the_post();
-
-			get_template_part( 'template-parts/content', get_post_type() );
-
-			the_post_navigation(
-				array(
-					'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'midland-stairlifts' ) . '</span> <span class="nav-title">%title</span>',
-					'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'midland-stairlifts' ) . '</span> <span class="nav-title">%title</span>',
-				)
-			);
-
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
-
-		endwhile; // End of the loop.
-		?>
-
-	</main><!-- #main -->
-
-<?php
-get_sidebar();
-get_footer();
+if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+<main id="primary" class="site-main single-insights">
+  <article <?php post_class(); ?>>
+    <?php
+    if ( have_rows('article_content') ) {
+      while ( have_rows('article_content') ) { the_row();
+        $layout = get_row_layout();
+        get_template_part('template-parts/article-sections/' . $layout);
+      }
+    } else {
+      get_template_part('template-parts/content', 'single');
+    }
+    ?>
+  </article>
+</main>
+<?php endwhile; endif; get_footer();

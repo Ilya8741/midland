@@ -1,8 +1,7 @@
 <?php
-// Layout fields
 $title = get_sub_field('title');
 $text  = get_sub_field('text');
-$link  = get_sub_field('link'); // ACF Link
+$link  = get_sub_field('link'); 
 
 $uid = 'home-slider-' . get_row_index();
 ?>

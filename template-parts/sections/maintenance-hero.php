@@ -6,11 +6,13 @@ $image = get_sub_field('image');
 $process_title = get_sub_field('process_title');
 $text = get_sub_field('text');
 $process_text = get_sub_field('process_text');
+$small_image = get_sub_field('small_image');
+
 ?>
 
 <div class="maintenance-hero">
     <div class="maintenance-hero-wrapper">
-        <div class="maintenance-hero-header">
+        <div class="maintenance-hero-header" data-aos="fade-right">
             <?php if (!empty($subtitle)) : ?>
                 <p class="maintenance-hero-subtitle"><?php echo esc_html($subtitle); ?></p>
             <?php endif; ?>
@@ -31,9 +33,9 @@ $process_text = get_sub_field('process_text');
             <?php endif; ?>
         </div>
         <div class="maintenance-hero-main">
-            <div class="maintenance-hero-left">
+            <div class="maintenance-hero-left" data-aos="fade-right">
                 <?php if (!empty($image['id'])) : ?>
-                    <div class="maintenance-hero-image-wrapper">
+                    <div class="maintenance-hero-image-wrapper <?php if ($small_image): ?> maintenance-hero-image-wrapper--small<?php endif; ?>">
                     <?php
                     echo wp_get_attachment_image(
                         $image['id'],
@@ -49,7 +51,7 @@ $process_text = get_sub_field('process_text');
                     <?php echo esc_html($text); ?>
                 </p>
             </div>
-            <div class="maintenance-hero-right">
+            <div class="maintenance-hero-right" data-aos="fade-left">
                 <p class="maintenance-hero-process-title"><?php echo esc_html($process_title); ?></p>
                 <?php if (!empty($process_text)) : ?>
                     <div class="maintenance-hero-richtext">
