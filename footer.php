@@ -127,7 +127,7 @@ $addr  = $normalize_link($address);
 	<section class="ms-footer__bottom main-section">
 		<div class="ms-footer__bottom-inner">
 			<div class="ms-footer__bottom-grid">
-				<div class="ms-footer__col" data-aos="fade-right">
+				<div class="ms-footer__col" data-aos="fade-right" data-aos-offset="0">
 					<h3 class="ms-footer__col-title">Contact us</h3>
 
 					<ul class="ms-footer__list">
@@ -174,7 +174,7 @@ $addr  = $normalize_link($address);
 						<?php endif; ?>
 					</ul>
 				</div>
-				<div class="ms-footer__col-right" data-aos="fade-left">
+				<div class="ms-footer__col-right" data-aos="fade-left" data-aos-offset="0">
 					<div class=" ms-footer__col--accordion">
 						<details class="ms-footer__details" data-footer-details>
 							<summary class="ms-footer__summary">
