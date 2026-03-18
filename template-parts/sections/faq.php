@@ -6,13 +6,21 @@ $contact_title = get_sub_field('contact_title');
 $contact_text  = get_sub_field('contact_text');
 $contact_phone = get_sub_field('contact_phone');
 $contact_icon  = get_sub_field('contact_icon');
-
+$background_color = get_sub_field('background_color');
 $faq_items     = get_sub_field('faq_items');
+$no_spacing    = get_sub_field('no_spacing');
 
 $uid = 'faq-section-' . get_row_index();
-?>
 
-<section class="faq-section" id="<?php echo esc_attr($uid); ?>" aria-labelledby="<?php echo esc_attr($uid); ?>-title">
+$section_classes = 'faq-section';
+
+if ($background_color === 'Blue') {
+    $section_classes .= ' bg-blue';
+} elseif ($background_color === 'Gray') {
+    $section_classes .= ' bg-gray';
+}
+?>
+<section class="<?php echo esc_attr($section_classes); ?> <?php if ($no_spacing): ?> faq-section-no-spacing<?php endif; ?>" id="<?php echo esc_attr($uid); ?>" aria-labelledby="<?php echo esc_attr($uid); ?>-title">
     <div class="main-container faq-section-wrapper">
         <div class="faq-section__content">
             <div class="faq-section__left" data-aos="fade-right">
@@ -77,9 +85,9 @@ $uid = 'faq-section-' . get_row_index();
                             $answer   = $item['answer'] ?? '';
                             ?>
                             <?php if (!empty($question) || !empty($answer)) : ?>
-                                <div class="faq-section__accordion-item">
+                                <div class="faq-section__accordion-item main-accordion-item">
                                     <button
-                                        class="faq-section__accordion-button"
+                                        class="faq-section__accordion-button main-accordion-button"
                                         type="button"
                                         aria-expanded="<?php echo $is_open ? 'true' : 'false'; ?>">
                                         <span class="faq-section__accordion-title">

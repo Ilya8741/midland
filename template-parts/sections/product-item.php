@@ -51,9 +51,9 @@
 				<?php endif; ?>
 
 				<div class="product-item__accordion">
-					<div class="detailed-hero__accordion-item">
+					<div class="detailed-hero__accordion-item main-accordion-item">
 						<button
-							class="detailed-hero__accordion-button"
+							class="detailed-hero__accordion-button main-accordion-button"
 							type="button"
 							aria-expanded="true">
 							<span><?php echo esc_html($features_title); ?></span>

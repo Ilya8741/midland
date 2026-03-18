@@ -4,6 +4,8 @@ $title      = get_the_title($post_id);
 $permalink  = get_permalink($post_id);
 $date       = get_the_date('d F Y', $post_id);
 $thumb_id   = get_post_thumbnail_id($post_id);
+$title1     = get_sub_field('title');
+$image1     = get_sub_field('image');
 
 $tags = get_the_terms($post_id, 'post_tag');
 $first_tag = (!empty($tags) && !is_wp_error($tags)) ? $tags[0] : null;
@@ -14,22 +16,24 @@ $mail_share     = 'mailto:?subject=' . rawurlencode($title) . '&body=' . rawurle
 ?>
 
 <section class="article-hero">
-  <div class="main-container">
+  <div class="article-hero-container">
     <div class="article-hero__content">
-
       <div class="article-hero__top">
         <div class="article-hero__meta">
           <?php if ($first_tag) : ?>
-            <p class="article-hero__tag"><?php echo esc_html($first_tag->name); ?></p>
+            <p class="article-hero__tag related-articles-slide-article-tag"><?php echo esc_html($first_tag->name); ?></p>
           <?php endif; ?>
-
+          <svg xmlns="http://www.w3.org/2000/svg" width="3" height="3" viewBox="0 0 3 3" fill="none">
+            <circle cx="1.5" cy="1.5" r="1.5" fill="#EEF6F8" />
+          </svg>
           <?php if (!empty($date)) : ?>
-            <p class="article-hero__date"><?php echo esc_html($date); ?></p>
+            <p class="article-hero__date related-articles-slide-date"><?php echo esc_html($date); ?></p>
           <?php endif; ?>
         </div>
-
-        <?php if (!empty($title)) : ?>
-          <h1 class="article-hero__title"><?php echo esc_html($title); ?></h1>
+        <?php if (!empty($title1)) : ?>
+          <h1 class="article-hero__title main-title"><?php echo wp_kses_post($title1); ?></h1>
+        <?php else : ?>
+          <h1 class="article-hero__title main-title"><?php echo esc_html($title); ?></h1>
         <?php endif; ?>
 
         <div class="article-hero__share">
@@ -38,10 +42,16 @@ $mail_share     = 'mailto:?subject=' . rawurlencode($title) . '&body=' . rawurle
             class="article-hero__share-link"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="<?php esc_attr_e('Share on Facebook', 'textdomain'); ?>"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
-              <path d="M7.222 0.777344H5.33311C4.4975 0.777344 3.69668 1.10923 3.10582 1.70009C2.51495 2.29095 2.18306 3.09175 2.18306 3.92737V5.81626H0.294167V8.33577H2.18306V13.3748H4.70257V8.33577H6.59146L7.222 5.81626H4.70257V3.92737C4.70257 3.76024 4.76897 3.60029 4.88714 3.48212C5.00531 3.36395 5.16526 3.29755 5.33239 3.29755H7.222V0.777344Z" fill="currentColor"/>
+            aria-label="<?php esc_attr_e('Share on Facebook', 'textdomain'); ?>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <g clip-path="url(#clip0_334_4692)">
+                <path d="M13.0516 5.02445C13.0516 4.08007 13.8951 3.74083 14.8395 3.74083C15.7839 3.74083 16.7924 4.03423 16.7924 4.03423L17.3976 0.440097C17.3976 0.440097 16.1139 0 13.0516 0C11.172 0 10.0809 0.715158 9.28327 1.76956C8.53143 2.76895 8.50393 4.37347 8.50393 5.40954V7.76589H6.07422V11.2775H8.50393V23.4719H13.0516V11.2775H16.6549L16.9208 7.76589H13.0516V5.02445Z" fill="#020251" />
+              </g>
+              <defs>
+                <clipPath id="clip0_334_4692">
+                  <rect width="23.4719" height="23.4719" fill="white" />
+                </clipPath>
+              </defs>
             </svg>
           </a>
 
@@ -50,20 +60,26 @@ $mail_share     = 'mailto:?subject=' . rawurlencode($title) . '&body=' . rawurle
             class="article-hero__share-link"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="<?php esc_attr_e('Share on X', 'textdomain'); ?>"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M10.9995 0.875H12.9868L8.64514 5.83887L13.7511 12.625H9.75201L6.62096 8.51539L3.02578 12.625H1.0372L5.68082 7.31767L0.782227 0.875H4.88286L7.71307 4.63124L10.9995 0.875ZM10.3019 11.4357H11.403L4.2847 2.00184H3.1033L10.3019 11.4357Z" fill="currentColor"/>
+            aria-label="<?php esc_attr_e('Share on X', 'textdomain'); ?>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <g clip-path="url(#clip0_334_4689)">
+                <path d="M13.969 10.1571L22.7069 0H20.6363L13.0491 8.8193L6.9893 0H0L9.16366 13.3363L0 23.9877H2.07073L10.083 14.6742L16.4826 23.9877H23.4719L13.9684 10.1571H13.969ZM11.1328 13.4538L10.2043 12.1258L2.81684 1.55881H5.99736L11.9592 10.0867L12.8876 11.4147L20.6373 22.4998H17.4567L11.1328 13.4544V13.4538Z" fill="#020251" />
+              </g>
+              <defs>
+                <clipPath id="clip0_334_4689">
+                  <rect width="23.4719" height="24" fill="white" />
+                </clipPath>
+              </defs>
             </svg>
           </a>
 
           <a
             href="<?php echo esc_url($mail_share); ?>"
             class="article-hero__share-link"
-            aria-label="<?php esc_attr_e('Share by email', 'textdomain'); ?>"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="12" viewBox="0 0 15 12" fill="none">
-              <path d="M13.75 0.75H1.25C0.559644 0.75 0 1.30964 0 2V10.3333C0 11.0237 0.559644 11.5833 1.25 11.5833H13.75C14.4404 11.5833 15 11.0237 15 10.3333V2C15 1.30964 14.4404 0.75 13.75 0.75ZM13.325 1.58333L7.5 5.61667L1.675 1.58333H13.325ZM13.75 10.75H1.25C1.01982 10.75 0.833333 10.5635 0.833333 10.3333V2.37917L7.26375 6.83167C7.33517 6.88107 7.41992 6.90756 7.50675 6.90756C7.59358 6.90756 7.67833 6.88107 7.74975 6.83167L14.1667 2.3875V10.3333C14.1667 10.5635 13.9802 10.75 13.75 10.75Z" fill="currentColor"/>
+            aria-label="<?php esc_attr_e('Share by email', 'textdomain'); ?>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M21.515 6.84595L12.7218 12.4469C12.4234 12.6202 12.0845 12.7115 11.7394 12.7115C11.3944 12.7115 11.0554 12.6202 10.757 12.4469L1.95508 6.84595" stroke="#020251" stroke-width="1.95599" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M19.559 3.91187H3.91107C2.8308 3.91187 1.95508 4.78759 1.95508 5.86786V17.6038C1.95508 18.6841 2.8308 19.5598 3.91107 19.5598H19.559C20.6393 19.5598 21.515 18.6841 21.515 17.6038V5.86786C21.515 4.78759 20.6393 3.91187 19.559 3.91187Z" stroke="#020251" stroke-width="1.95599" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </a>
 
@@ -71,56 +87,76 @@ $mail_share     = 'mailto:?subject=' . rawurlencode($title) . '&body=' . rawurle
             type="button"
             class="article-hero__share-link article-hero__copy-link"
             data-copy-link="<?php echo esc_url($permalink); ?>"
-            aria-label="<?php esc_attr_e('Copy link', 'textdomain'); ?>"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M5.83333 8.16667C6.08469 8.50261 6.40543 8.7807 6.77372 8.98255C7.142 9.18439 7.54969 9.30535 7.96921 9.33709C8.38873 9.36883 8.81008 9.3106 9.20518 9.16642C9.60028 9.02224 9.9598 8.79544 10.26 8.50167L12.035 6.72667C12.5743 6.16839 12.8728 5.4206 12.8663 4.64446C12.8598 3.86833 12.549 3.12564 12.0004 2.57654C11.4518 2.02745 10.7094 1.71605 9.93329 1.7089C9.15716 1.70176 8.40912 1.99962 7.85 2.53896L6.8325 3.55" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M8.16667 5.83333C7.91531 5.49739 7.59457 5.2193 7.22628 5.01745C6.858 4.81561 6.45031 4.69465 6.03079 4.66291C5.61127 4.63117 5.18992 4.6894 4.79482 4.83358C4.39972 4.97776 4.0402 5.20456 3.74 5.49833L1.965 7.27333C1.42573 7.83161 1.12718 8.5794 1.13368 9.35554C1.14018 10.1317 1.45098 10.8744 1.99958 11.4235C2.54818 11.9726 3.29065 12.284 4.06679 12.2911C4.84292 12.2982 5.59088 12.0004 6.15 11.461L7.16167 10.4492" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+            aria-label="<?php esc_attr_e('Copy link', 'textdomain'); ?>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M9.78125 12.714C10.2013 13.2755 10.7371 13.7401 11.3524 14.0763C11.9678 14.4124 12.6482 14.6124 13.3477 14.6625C14.0471 14.7125 14.7491 14.6116 15.406 14.3666C16.063 14.1215 16.6596 13.738 17.1553 13.2421L20.0893 10.3081C20.9801 9.38584 21.4729 8.15062 21.4618 6.86848C21.4507 5.58634 20.9364 4.35988 20.0298 3.45324C19.1231 2.5466 17.8966 2.03232 16.6145 2.02118C15.3324 2.01004 14.0972 2.50292 13.1749 3.39367L11.4927 5.06604" stroke="#020251" stroke-width="1.95599" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M13.6925 10.7579C13.2725 10.1964 12.7366 9.73177 12.1213 9.39557C11.5059 9.05938 10.8255 8.85946 10.1261 8.80937C9.42665 8.75928 8.72465 8.86019 8.06767 9.10526C7.4107 9.35033 6.81411 9.73383 6.31838 10.2297L3.38439 13.1637C2.49364 14.086 2.00076 15.3212 2.0119 16.6033C2.02305 17.8855 2.53732 19.1119 3.44396 20.0186C4.3506 20.9252 5.57707 21.4395 6.8592 21.4506C8.14134 21.4618 9.37656 20.9689 10.2988 20.0782L11.9712 18.4058" stroke="#020251" stroke-width="1.95599" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
+            <div class="article-hero__copy-link-success">
+              <p>Copied!</p>
+            </div>
           </button>
         </div>
       </div>
-
-      <?php if (!empty($thumb_id)) : ?>
-        <div class="article-hero__image-wrapper">
+      <?php if (!empty($image1['id'])) : ?>
+        <div class="article-hero-image-wrapper">
           <?php
+          echo wp_get_attachment_image(
+            $image1['id'],
+            'full',
+            false,
+            array(
+              'class'   => 'article-hero-image',
+              'loading' => 'lazy',
+              'alt'     => !empty($image1['alt']) ? esc_attr($image1['alt']) : '',
+            )
+          );
+          ?>
+        </div>
+      <?php else : ?>
+        <?php if (!empty($thumb_id)) : ?>
+          <div class="article-hero-image-wrapper">
+            <?php
             echo wp_get_attachment_image(
               $thumb_id,
               'full',
               false,
               array(
-                'class' => 'article-hero__image',
+                'class' => 'article-hero-image',
                 'alt'   => $title,
               )
             );
-          ?>
-        </div>
+            ?>
+          </div>
+        <?php endif; ?>
       <?php endif; ?>
+
+
 
     </div>
   </div>
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const copyButton = document.querySelector('.article-hero__copy-link');
+  document.addEventListener('DOMContentLoaded', function() {
+    const copyButton = document.querySelector('.article-hero__copy-link');
 
-  if (!copyButton) return;
+    if (!copyButton) return;
 
-  copyButton.addEventListener('click', async function () {
-    const link = this.getAttribute('data-copy-link');
-    if (!link) return;
+    copyButton.addEventListener('click', async function() {
+      const link = this.getAttribute('data-copy-link');
+      if (!link) return;
 
-    try {
-      await navigator.clipboard.writeText(link);
-      this.classList.add('is-copied');
+      try {
+        await navigator.clipboard.writeText(link);
+        this.classList.add('is-copied');
 
-      setTimeout(() => {
-        this.classList.remove('is-copied');
-      }, 2000);
-    } catch (error) {
-      console.error('Copy failed:', error);
-    }
+        setTimeout(() => {
+          this.classList.remove('is-copied');
+        }, 2000);
+      } catch (error) {
+        console.error('Copy failed:', error);
+      }
+    });
   });
-});
 </script>

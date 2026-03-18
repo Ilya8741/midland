@@ -60,7 +60,7 @@ $mail  = $normalize_link($contact_mail);
 $addr  = $normalize_link($address);
 ?>
 
-<footer class="ms-footer" data-ms-footer>
+<footer class="ms-footer <?php echo is_page(['contact', 'get-a-quote']) ? 'this-contact' : ''; ?>" data-ms-footer>
 	<section class="ms-footer__contact main-section">
 		<div class="ms-footer__contact-inner">
 			<div class="ms-footer__contact-grid">

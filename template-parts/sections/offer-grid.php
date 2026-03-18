@@ -3,9 +3,11 @@ $title   = get_sub_field('title');
 $text    = get_sub_field('text');
 $link    = get_sub_field('link');
 $maintenance_version = get_sub_field('maintenance_version');
+$no_spacing = get_sub_field('no_spacing');
+
 ?>
 
-<div class="offer-grid main-container <?php if ($maintenance_version): ?> offer-grid--maintenance<?php endif; ?>">
+<div class="offer-grid main-container <?php if ($no_spacing): ?> offer-grid--no-spacing<?php endif; ?> <?php if ($maintenance_version): ?> offer-grid--maintenance<?php endif; ?>">
     <?php if (!empty($title)) : ?>
         <div class="main-header-section offer-grid-header-section">
             <div data-aos="fade-right">

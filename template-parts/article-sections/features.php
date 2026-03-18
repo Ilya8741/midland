@@ -1,5 +1,5 @@
 
-<section class="features main-section">
+<section class="features features--article-page main-section">
   <div class="features-wrapper">
     <?php if (have_rows('features_items')) : ?>
       <?php 

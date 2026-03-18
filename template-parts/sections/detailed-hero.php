@@ -91,9 +91,9 @@ $last_four_items = array_slice($slider_items, -4);
 				<?php endif; ?>
 
 				<div class="detailed-hero__accordion">
-					<div class="detailed-hero__accordion-item">
+					<div class="detailed-hero__accordion-item main-accordion-item">
 						<button
-							class="detailed-hero__accordion-button"
+							class="detailed-hero__accordion-button main-accordion-button"
 							type="button"
 							aria-expanded="true">
 							<span><?php echo esc_html($description_title); ?></span>
@@ -114,9 +114,9 @@ $last_four_items = array_slice($slider_items, -4);
 						</div>
 					</div>
 
-					<div class="detailed-hero__accordion-item is-open">
+					<div class="detailed-hero__accordion-item main-accordion-item is-open">
 						<button
-							class="detailed-hero__accordion-button"
+							class="detailed-hero__accordion-button main-accordion-button"
 							type="button"
 							aria-expanded="true">
 							<span><?php echo esc_html($features_title); ?></span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

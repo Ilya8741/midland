@@ -19,7 +19,7 @@
                         <?php endif; ?>
                     </div>
                 <?php else : ?>
-                    <div class="article-content-grid">
+                    <div class="article-content-grid article-content-grid-images">
                         <?php if (!empty($image_1['id'])) : ?>
                             <div class="article-media-image-wrapper">
                                 <?php
