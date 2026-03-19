@@ -764,6 +764,32 @@ a:hover {
   width: 100%;
 }
 
+.ms-footer.ms-footer--white-version .ms-footer__bottom {
+  background: #EEF6F8;
+}
+
+.ms-footer.ms-footer--white-version .ms-footer__col-title , .ms-footer.ms-footer--white-version .ms-footer__summary-text{
+  color: #020251;
+}
+
+.ms-footer.ms-footer--white-version .ms-footer__link:after {
+  background: #17172A;
+}
+
+.ms-footer.ms-footer--white-version .ms-footer__link {
+  color: #17172A;
+}
+
+.ms-footer.ms-footer--white-version .ms-footer__copyright {
+color: #17172A;
+}
+
+.ms-footer.ms-footer--white-version .ms-footer__plus svg path{
+  stroke: #020251;
+}
+
+
+
 .ms-footer__contact {
   position: relative;
 }
@@ -1012,7 +1038,7 @@ a:hover {
 
 .ms-footer__col-title,
 .ms-footer__summary-text {
-  margin: 0 0 15px 0;
+  margin: 0 0 15px 0; 
   color: var(--2, #2197c1);
   font-size: 16px;
   font-style: normal;
@@ -1103,7 +1129,7 @@ a:hover {
   justify-content: space-between;
   gap: 12px;
   padding: 0;
-  margin: 0 0 10px 0;
+  margin: 0;
   pointer-events: none;
 }
 
@@ -1221,6 +1247,13 @@ a:hover {
     .ms-footer__col--accordion:last-child
     .ms-footer__details {
     border-top: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .ms-footer.ms-footer--white-version .ms-footer__col-right
+    .ms-footer__col--accordion:first-child
+    .ms-footer__details {
+        border-top: 1px solid #2197c1;
+    border-bottom: 1px solid #2197c1;
   }
 
   .ms-footer__list {

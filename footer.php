@@ -24,6 +24,8 @@ $contact_hours       = get_field('contact_hours', $ctx);
 $contact_hours_text  = get_field('contact_hours_text', $ctx);
 $footer_contact_form = get_field('footer_contact_form', $ctx);
 $address             = get_field('address', $ctx);
+$white_footer             = get_field('white_footer', $ctx);
+
 
 $menu_title_1 = get_field('footer_menu_title_1', $ctx);
 $menu_title_2 = get_field('footer_menu_title_2', $ctx);
@@ -60,7 +62,7 @@ $mail  = $normalize_link($contact_mail);
 $addr  = $normalize_link($address);
 ?>
 
-<footer class="ms-footer <?php echo is_page(['contact', 'get-a-quote']) ? 'this-contact' : ''; ?>" data-ms-footer>
+<footer class="ms-footer   <?php if ($white_footer): ?> ms-footer--white-version<?php endif; ?> <?php echo is_page(['contact', 'get-a-quote']) ? 'this-contact' : ''; ?>" data-ms-footer>
 	<section class="ms-footer__contact main-section">
 		<div class="ms-footer__contact-inner">
 			<div class="ms-footer__contact-grid">

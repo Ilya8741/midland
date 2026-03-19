@@ -162,25 +162,27 @@ $mail  = $normalize_link($contact_mail);
     </div>
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.addEventListener('wpcf7mailsent', function(event) {
-            const form = event.target;
-            if (!form) return;
+<?php if ($get_a_quote) : ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('wpcf7mailsent', function(event) {
+                const form = event.target;
+                if (!form) return;
 
-            const wrapper = form.closest('.contact-page-get-a-quote-wrapper');
-            if (!wrapper) return;
+                const wrapper = form.closest('.contact-page-get-a-quote-wrapper');
+                if (!wrapper) return;
 
-            const formWrap = wrapper.querySelector('.get-a-quote-form-wrap');
-            const successBlock = wrapper.querySelector('.contact-page--success');
+                const formWrap = wrapper.querySelector('.get-a-quote-form-wrap');
+                const successBlock = wrapper.querySelector('.contact-page--success');
 
-            if (formWrap) {
-                formWrap.classList.add('is-hidden');
-            }
+                if (formWrap) {
+                    formWrap.classList.add('is-hidden');
+                }
 
-            if (successBlock) {
-                successBlock.classList.add('is-visible');
-            }
-        }, false);
-    });
-</script>
+                if (successBlock) {
+                    successBlock.classList.add('is-visible');
+                }
+            }, false);
+        });
+    </script>
+<?php endif; ?>
