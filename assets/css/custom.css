@@ -1319,6 +1319,15 @@ color: #17172A;
 
 /* hero-section */
 
+.location-seo-section .hero-section-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.location-seo-section .hero-section-title {
+  max-width: 723px;
+}
+
 .hero-section-wrapper {
   max-width: 1440px;
   margin: 0 auto;

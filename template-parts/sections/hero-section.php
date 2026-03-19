@@ -8,9 +8,10 @@
   $block_text   = get_sub_field('hero_block_text');
   $link         = get_sub_field('link');
   $listing      = get_sub_field('listing_version');
+  $location_seo = get_sub_field('location_seo');
 ?>
 
-<section class="hero-section main-section <?php if ($listing): ?> listing-section<?php endif; ?>">
+<section class="hero-section main-section <?php if ($location_seo): ?> location-seo-section<?php endif; ?> <?php if ($listing): ?> listing-section<?php endif; ?>">
   <div class="hero-section-wrapper">
     <div class="hero-section-header">
       <div class="hero-section-left" data-aos="fade-right">
