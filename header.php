@@ -87,6 +87,15 @@
 											) {
 												$is_active = true;
 											}
+
+											if (
+												trim($link_text) === 'Services' &&
+												(
+													is_page_template('page-templates/services.php')
+												)
+											) {
+												$is_active = true;
+											}
 											?>
 
 											<a
