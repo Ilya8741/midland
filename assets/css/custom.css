@@ -3082,10 +3082,10 @@ color: #17172A;
   padding: 0 24px;
 }
 
-.offer-grid-main .offer-grid-item img {
+.offer-grid-main .offer-grid-item img , .our-range-grid-item img{
   transition: all .3s ease;
 }
-.offer-grid-main .offer-grid-item:hover img{
+.offer-grid-main .offer-grid-item:hover img, .our-range-grid-item:hover img {
   scale: 1.05;
 }
 

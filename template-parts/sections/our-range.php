@@ -38,16 +38,20 @@ $link  = get_sub_field('link');
                 ?>
                     <div class="our-range-grid-item" data-aos="fade-right" data-aos-duration="<?php echo esc_attr($duration); ?>">
                         <?php if (!empty($slide_image['id'])) : ?>
-                            <div class="our-range-image-wrapper">
-                                <?php
-                                echo wp_get_attachment_image(
-                                    $slide_image['id'],
-                                    'full',
-                                    false,
-                                    array('class' => 'main-image')
-                                );
-                                ?>
-                            </div>
+                            <a href="<?php echo esc_url($slide_link['url']); ?>"
+                                target="<?php echo esc_attr(!empty($slide_link['target']) ? $slide_link['target'] : '_self'); ?>"
+                                <?php if (!empty($slide_link['target']) && $slide_link['target'] === '_blank') : ?>rel="noopener noreferrer" <?php endif; ?>>
+                                <div class="our-range-image-wrapper">
+                                    <?php
+                                    echo wp_get_attachment_image(
+                                        $slide_image['id'],
+                                        'full',
+                                        false,
+                                        array('class' => 'main-image')
+                                    );
+                                    ?>
+                                </div>
+                            </a>
                         <?php endif; ?>
                         <?php if (!empty($slide_title)) : ?>
                             <h5 class="home-slider-slide-title">
