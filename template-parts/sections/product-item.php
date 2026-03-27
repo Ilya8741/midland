@@ -9,6 +9,7 @@
     $section_classes = 'product-item';
     $image = get_sub_field('image');
     $small_container = get_sub_field('small_container');
+	$reverse = get_sub_field('reverse');
 
     if ($spacing === 'No spacing top') {
         $section_classes .= ' no-top';
@@ -16,13 +17,15 @@
         $section_classes .= ' small-bottom';
     } elseif ($spacing === 'No spacing') {
         $section_classes .= ' no-spacing';
+    } elseif ($spacing === 'All spacing') {
+        $section_classes .= ' all-spacing';
     } 
 ?>
 
 <section class="<?php echo esc_attr($section_classes); ?> <?php if ($small_container): ?> product-item--small<?php endif; ?>">
 	<div class="main-container detailed-hero__wrapper">
 	
-		<div class="product-item__content">
+		<div class="product-item__content <?php if ($reverse): ?> product-item__content-reverse<?php endif; ?>">
 			<div class="product-item__left" data-aos="fade-right">
 				<?php if (!empty($title)) : ?>
 					<h2 id="<?php echo esc_attr($section_id); ?>-title" class="product-item__title main-title-h3">

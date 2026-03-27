@@ -70,6 +70,7 @@ if (empty($posts)) {
                   <div class="related-articles-slide-top">
 
                     <?php if (!empty($thumb_id)) : ?>
+                         <a href="<?php echo esc_url($p_url); ?>">
                       <div class="related-articles-slide-image-wrapper">
                         <?php
                         echo wp_get_attachment_image(
@@ -80,6 +81,7 @@ if (empty($posts)) {
                         );
                         ?>
                       </div>
+                       </a>
                     <?php endif; ?>
 
                     <?php if (!empty($p_title)) : ?>

@@ -37,7 +37,11 @@ $no_spacing = get_sub_field('no_spacing');
             </div>
         </div>
     <?php endif; ?>
-    <div class="offer-grid-main">
+    <?php
+    $grid_items = get_sub_field('grid_items');
+    $count = is_array($grid_items) ? count($grid_items) : 0;
+    ?>
+    <div class="offer-grid-main <?php echo ($count > 2) ? 'three-offer-grid-main' : ''; ?>">
         <?php if (have_rows('grid_items')) : ?>
             <?php while (have_rows('grid_items')) : the_row();
                 $slide_image = get_sub_field('image');
@@ -49,37 +53,41 @@ $no_spacing = get_sub_field('no_spacing');
             ?>
                 <div class="home-slider-slide offer-grid-item" data-aos="fade-up">
                     <?php if (!empty($slide_image['id'])) : ?>
-                        <div class="home-slider-slide-image-wrapper offer-grid-image-wrapper">
-                            <?php if (!$maintenance_version): ?> 
-                                <?php if (!empty($slide_tag)) : ?>
-                                    <div class="home-slider-slide-tag">
-                                        <?php echo esc_html($slide_tag); ?>
-                                    </div>
+                        <a href="<?php echo esc_url($slide_link['url']); ?>"
+                            target="<?php echo esc_attr(!empty($slide_link['target']) ? $slide_link['target'] : '_self'); ?>"
+                            <?php if (!empty($slide_link['target']) && $slide_link['target'] === '_blank') : ?>rel="noopener noreferrer" <?php endif; ?>>
+                            <div class="home-slider-slide-image-wrapper offer-grid-image-wrapper">
+                                <?php if (!$maintenance_version): ?>
+                                    <?php if (!empty($slide_tag)) : ?>
+                                        <div class="home-slider-slide-tag">
+                                            <?php echo esc_html($slide_tag); ?>
+                                        </div>
+                                    <?php endif; ?>
                                 <?php endif; ?>
-                            <?php endif; ?>
-                            <?php
-                            echo wp_get_attachment_image(
-                                $slide_image['id'],
-                                'full',
-                                false,
-                                array('class' => 'home-slider-slide-image')
-                            );
-                            ?>
-                        </div>
+                                <?php
+                                echo wp_get_attachment_image(
+                                    $slide_image['id'],
+                                    'full',
+                                    false,
+                                    array('class' => 'home-slider-slide-image')
+                                );
+                                ?>
+                            </div>
+                        </a>
                     <?php endif; ?>
-                        <?php if ($maintenance_version): ?> 
-                          <?php if (!empty($slide_tag)) : ?>
-                                <p class="maintenance-tag">
-                                    <?php echo esc_html($slide_tag); ?>
-                                </p>
-                            <?php endif; ?>
+                    <?php if ($maintenance_version): ?>
+                        <?php if (!empty($slide_tag)) : ?>
+                            <p class="maintenance-tag">
+                                <?php echo esc_html($slide_tag); ?>
+                            </p>
+                        <?php endif; ?>
                     <?php endif; ?>
                     <?php if (!empty($slide_title)) : ?>
                         <h5 class="home-slider-slide-title">
                             <?php echo wp_kses_post($slide_title); ?>
                         </h5>
                     <?php endif; ?>
-                
+
                     <?php if (!empty($slide_price)) : ?>
                         <p class="home-slider-slide-price">
                             <?php echo esc_html($slide_price); ?>

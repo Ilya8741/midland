@@ -3,6 +3,7 @@
         <h2 class="about-grid-title main-title" data-aos="fade-right">
             <?php the_sub_field('title'); ?>
         </h2>
+        
         <div class="about-grid-main">
        <?php if (have_rows('items')) : ?>
             <?php while (have_rows('items')) : the_row();

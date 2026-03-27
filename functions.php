@@ -8,7 +8,7 @@
  */
 
 if ( ! defined( '_S_VERSION' ) ) {
-	define( '_S_VERSION', '1.4.6' );
+	define( '_S_VERSION', '1.4.7' );
 }
 
 /**
@@ -91,12 +91,7 @@ function midland_stairlifts_widgets_init() {
 }
 add_action( 'widgets_init', 'midland_stairlifts_widgets_init' );
 
-/**
- * =========================
- * Font preload (Manrope variable)
- * =========================
- * Пока pre-load TTF. После конвертации на woff2 просто поменяем путь + type.
- */
+
 add_action( 'wp_head', function () {
 	$font_rel  = '/assets/fonts/manrope-variable-font_wght.ttf';
 	$font_path = get_template_directory() . $font_rel;

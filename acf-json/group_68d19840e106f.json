@@ -1175,6 +1175,27 @@
                             "ui_off_text": ""
                         },
                         {
+                            "key": "field_69c6b62646c2e",
+                            "label": "Autoplay",
+                            "name": "autoplay",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": ""
+                        },
+                        {
                             "key": "field_69b807f824f36",
                             "label": "Section spacing",
                             "name": "section_spacing",
@@ -1452,6 +1473,25 @@
                                     "mime_types": "",
                                     "allow_in_bindings": 0,
                                     "preview_size": "medium",
+                                    "parent_repeater": "field_69a6ec78d2cd0"
+                                },
+                                {
+                                    "key": "field_69c6b748eadd6",
+                                    "label": "Image URL",
+                                    "name": "image_url",
+                                    "aria-label": "",
+                                    "type": "url",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
                                     "parent_repeater": "field_69a6ec78d2cd0"
                                 }
                             ]
@@ -1792,6 +1832,27 @@
                             "max_size": "",
                             "mime_types": "",
                             "allow_in_bindings": 0
+                        },
+                        {
+                            "key": "field_69c6bbdfafea8",
+                            "label": "Autoplay",
+                            "name": "autoplay",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": ""
                         }
                     ],
                     "min": "",
@@ -3202,7 +3263,8 @@
                             "choices": {
                                 "No spacing top": "No spacing top",
                                 "Small spacing bottom": "Small spacing bottom",
-                                "No spacing": "No spacing"
+                                "No spacing": "No spacing",
+                                "All spacing": "All spacing"
                             },
                             "default_value": "Small spacing bottom",
                             "return_format": "value",
@@ -3216,6 +3278,27 @@
                             "key": "field_69b180413a6d8",
                             "label": "Small container",
                             "name": "small_container",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "33",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": ""
+                        },
+                        {
+                            "key": "field_69c6c527ff534",
+                            "label": "Reverse",
+                            "name": "reverse",
                             "aria-label": "",
                             "type": "true_false",
                             "instructions": "",
@@ -4406,5 +4489,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1773932073
+    "modified": 1774634647
 }

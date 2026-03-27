@@ -69,16 +69,14 @@ $uid = 'home-slider-' . get_row_index();
                 <div class="swiper-slide">
                   <div class="home-slider-slide" data-aos="fade-right"
                     data-aos-duration="<?php echo esc_attr($duration); ?>">
-
                     <?php if (!empty($slide_image['id'])) : ?>
+                      <a href="<?php echo esc_url($slide_link['url']); ?>" target="<?php echo esc_attr(!empty($slide_link['target']) ? $slide_link['target'] : '_self'); ?>" <?php if (!empty($slide_link['target']) && $slide_link['target'] === '_blank') : ?>rel="noopener noreferrer"<?php endif; ?>>
                       <div class="home-slider-slide-image-wrapper">
-
                         <?php if (!empty($slide_tag)) : ?>
                           <div class="home-slider-slide-tag">
                             <?php echo esc_html($slide_tag); ?>
                           </div>
                         <?php endif; ?>
-
                         <?php
                         echo wp_get_attachment_image(
                           $slide_image['id'],
@@ -87,8 +85,8 @@ $uid = 'home-slider-' . get_row_index();
                           array('class' => 'home-slider-slide-image')
                         );
                         ?>
-
                       </div>
+                        </a>
                     <?php endif; ?>
 
                     <?php if (!empty($slide_title)) : ?>
@@ -144,7 +142,7 @@ $uid = 'home-slider-' . get_row_index();
         </div>
 
       </div>
-         <div class="home-slider-controls main-controls" data-home-slider-controls="<?php echo esc_attr($uid); ?>">
+          <div class="home-slider-controls main-controls" data-home-slider-controls="<?php echo esc_attr($uid); ?>">
                 <div class="home-slider-progress main-progress">
                     <div class="home-slider-progress-bar main-progress-bar" data-home-slider-progress="<?php echo esc_attr($uid); ?>"></div>
                 </div>
@@ -170,7 +168,7 @@ $uid = 'home-slider-' . get_row_index();
                         </svg>
                     </button>
                 </div>
-            </div>
+          </div>
     </div>
   </div>
 </section>
@@ -227,6 +225,15 @@ $uid = 'home-slider-' . get_row_index();
       const total = sw.slides.length;
       let perView = sw.params.slidesPerView;
       perView = perView === 'auto' ? 1 : Number(perView) || 1;
+
+     const controls = progressEl.closest('.main-controls');
+      if (sw.isLocked) {
+        if (controls) controls.style.display = 'none';
+        return;
+      } else {
+        if (controls) controls.style.display = '';
+      }
+
       const minRatio = total > 0 ? Math.min(1, perView / total) : 0;
       const moveRatio = Number.isFinite(sw.progress) ? sw.progress : 0;
       const ratio = minRatio + (1 - minRatio) * moveRatio;

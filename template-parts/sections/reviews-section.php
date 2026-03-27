@@ -34,7 +34,9 @@ if ($spacing === 'Top spacing') {
                 <?php if (have_rows('logos')) : ?>
                     <?php while (have_rows('logos')) : the_row();
                         $logo = get_sub_field('image');
+                        $image_url = get_sub_field('image_url');
                     ?>
+                    <a href="<?php echo esc_url($image_url); ?>" target="_blank">
                         <?php if (!empty($logo['id'])) : ?>
                             <?php
                             echo wp_get_attachment_image(
@@ -45,6 +47,7 @@ if ($spacing === 'Top spacing') {
                             );
                             ?>
                         <?php endif; ?>
+                        </a>
                     <?php endwhile; ?>
                 <?php endif; ?>
             </div>

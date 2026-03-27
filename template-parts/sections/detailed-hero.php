@@ -114,7 +114,7 @@ $last_four_items = array_slice($slider_items, -4);
 						</div>
 					</div>
 
-					<div class="detailed-hero__accordion-item main-accordion-item is-open">
+					<div class="detailed-hero__accordion-item main-accordion-item">
 						<button
 							class="detailed-hero__accordion-button main-accordion-button"
 							type="button"
