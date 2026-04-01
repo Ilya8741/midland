@@ -68,16 +68,18 @@ if (empty($posts)) {
                   <div class="related-articles-slide-top">
 
                     <?php if (!empty($thumb_id)) : ?>
-                      <div class="related-articles-slide-image-wrapper">
-                        <?php
-                        echo wp_get_attachment_image(
-                          $thumb_id,
-                          'full',
-                          false,
-                          array('class' => 'related-articles-slide-image')
-                        );
-                        ?>
+                      <a href="<?php echo esc_url($p_url); ?>">
+                        <div class="related-articles-slide-image-wrapper">
+                          <?php
+                          echo wp_get_attachment_image(
+                            $thumb_id,
+                            'full',
+                            false,
+                            array('class' => 'related-articles-slide-image')
+                          );
+                          ?>
                       </div>
+                      </a>
                     <?php endif; ?>
 
                     <?php if (!empty($p_title)) : ?>
