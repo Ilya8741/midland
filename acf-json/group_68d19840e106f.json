@@ -4111,6 +4111,40 @@
                             "allow_in_bindings": 0
                         },
                         {
+                            "key": "field_69d78df2a3131",
+                            "label": "Contact Whatsapp",
+                            "name": "contact_whatsapp",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "allow_in_bindings": 0
+                        },
+                        {
+                            "key": "field_69d790b0a3132",
+                            "label": "Contact facebook",
+                            "name": "contact_facebook",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "allow_in_bindings": 0
+                        },
+                        {
                             "key": "field_69b9569027967",
                             "label": "Contact hours",
                             "name": "contact_hours",
@@ -4568,5 +4602,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1775731834
+    "modified": 1775735003
 }
