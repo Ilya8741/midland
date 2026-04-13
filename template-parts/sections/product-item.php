@@ -10,6 +10,7 @@
     $image = get_sub_field('image');
     $small_container = get_sub_field('small_container');
 	$reverse = get_sub_field('reverse');
+	$gray_bg = get_sub_field('gray_bg');
 
     if ($spacing === 'No spacing top') {
         $section_classes .= ' no-top';
@@ -22,7 +23,7 @@
     } 
 ?>
 
-<section class="<?php echo esc_attr($section_classes); ?> <?php if ($small_container): ?> product-item--small<?php endif; ?>">
+<section class="<?php echo esc_attr($section_classes); ?> <?php if ($gray_bg): ?> product-item--gray-bg<?php endif; ?> <?php if ($small_container): ?> product-item--small<?php endif; ?>">
 	<div class="main-container detailed-hero__wrapper">
 	
 		<div class="product-item__content <?php if ($reverse): ?> product-item__content-reverse<?php endif; ?>">

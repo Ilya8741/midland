@@ -41,22 +41,31 @@ $location_seo = get_sub_field('location_seo');
         <?php while (have_rows('items')) : the_row();
           $icon = get_sub_field('icon');
           $text = get_sub_field('text');
+          $url = get_sub_field('url');
+
+          $tag = !empty($url) ? 'a' : 'div';
         ?>
-          <div class="about-hero-item">
+          <<?php echo $tag; ?>
+            class="about-hero-item"
+            <?php if (!empty($url)) : ?>
+              href="<?php echo esc_url($url); ?>"
+              target="_blank"
+            <?php endif; ?>
+          >
             <?php if (!empty($icon)) : ?>
               <img
                 class="about-hero-item-icon"
                 src="<?php echo esc_url($icon['url']); ?>"
                 alt="<?php echo esc_attr($icon['alt']); ?>">
             <?php endif; ?>
+
             <?php if (!empty($text)) : ?>
               <p class="about-hero-item-text">
                 <?php echo esc_html($text); ?>
               </p>
             <?php endif; ?>
-          </div>
+          </<?php echo $tag; ?>>
         <?php endwhile; ?>
-
       </div>
     <?php endif; ?>
     <div class="hero-section-image-wrapper" data-aos="fade-up">

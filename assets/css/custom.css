@@ -3816,6 +3816,10 @@ color: #17172A;
   padding-right: 58px;
 }
 
+.product-item--gray-bg {
+  background: #f2f2f2;
+}
+
 .product-item__accordion {
   margin-top: 24px;
 }

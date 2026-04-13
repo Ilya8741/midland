@@ -181,6 +181,25 @@
                                     "prepend": "",
                                     "append": "",
                                     "parent_repeater": "field_69d78433b2419"
+                                },
+                                {
+                                    "key": "field_69dd1e97e8c7c",
+                                    "label": "URL",
+                                    "name": "url",
+                                    "aria-label": "",
+                                    "type": "url",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
+                                    "parent_repeater": "field_69d78433b2419"
                                 }
                             ]
                         },
@@ -3387,6 +3406,27 @@
                             "ui": 0,
                             "ui_on_text": "",
                             "ui_off_text": ""
+                        },
+                        {
+                            "key": "field_69dd225147996",
+                            "label": "Gray BG",
+                            "name": "gray_bg",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": ""
                         }
                     ],
                     "min": "",
@@ -4602,5 +4642,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1775742196
+    "modified": 1776099956
 }
