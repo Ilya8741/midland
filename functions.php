@@ -8,7 +8,7 @@
  */
 
 if ( ! defined( '_S_VERSION' ) ) {
-	define( '_S_VERSION', '1.5.9' );
+	define( '_S_VERSION', '1.6.0' );
 }
 
 
@@ -349,4 +349,11 @@ add_action('init', function () {
     'supports'        => ['title','editor','thumbnail','excerpt','revisions'],
     'taxonomies'      => ['category','post_tag'],
   ]);
+});
+
+add_action('template_redirect', function () {
+    if (is_404()) {
+        wp_redirect(home_url('/'), 301);
+        exit;
+    }
 });
